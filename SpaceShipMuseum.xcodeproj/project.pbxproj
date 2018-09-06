@@ -13,6 +13,11 @@
 		527951D520CC07A000B9119D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D320CC07A000B9119D /* Main.storyboard */; };
 		527951D720CC07A100B9119D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527951D620CC07A100B9119D /* Assets.xcassets */; };
 		527951DA20CC07A100B9119D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D820CC07A100B9119D /* LaunchScreen.storyboard */; };
+		B8AB9A802141951800E6193B /* ARMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AB9A7F2141951800E6193B /* ARMenuView.xib */; };
+		B8AB9A822141968500E6193B /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB9A812141968500E6193B /* NibView.swift */; };
+		B8AB9A84214196C700E6193B /* UIViewNibExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB9A83214196C700E6193B /* UIViewNibExtension.swift */; };
+		B8AB9A86214197D400E6193B /* ARMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB9A85214197D400E6193B /* ARMenuView.swift */; };
+		B8F5CCCB214181B70034D0EF /* ARMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		527951D620CC07A100B9119D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		527951D920CC07A100B9119D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		527951DB20CC07A100B9119D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8AB9A7F2141951800E6193B /* ARMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARMenuView.xib; sourceTree = "<group>"; };
+		B8AB9A812141968500E6193B /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		B8AB9A83214196C700E6193B /* UIViewNibExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewNibExtension.swift; sourceTree = "<group>"; };
+		B8AB9A85214197D400E6193B /* ARMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMenuView.swift; sourceTree = "<group>"; };
+		B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,11 @@
 				527951D620CC07A100B9119D /* Assets.xcassets */,
 				527951D820CC07A100B9119D /* LaunchScreen.storyboard */,
 				527951DB20CC07A100B9119D /* Info.plist */,
+				B8AB9A812141968500E6193B /* NibView.swift */,
+				B8AB9A83214196C700E6193B /* UIViewNibExtension.swift */,
+				B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */,
+				B8AB9A7F2141951800E6193B /* ARMenuView.xib */,
+				B8AB9A85214197D400E6193B /* ARMenuView.swift */,
 			);
 			path = SpaceShipMuseum;
 			sourceTree = "<group>";
@@ -125,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AB9A802141951800E6193B /* ARMenuView.xib in Resources */,
 				527951D020CC07A000B9119D /* art.scnassets in Resources */,
 				527951DA20CC07A100B9119D /* LaunchScreen.storyboard in Resources */,
 				527951D720CC07A100B9119D /* Assets.xcassets in Resources */,
@@ -139,8 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AB9A86214197D400E6193B /* ARMenuView.swift in Sources */,
+				B8AB9A84214196C700E6193B /* UIViewNibExtension.swift in Sources */,
+				B8AB9A822141968500E6193B /* NibView.swift in Sources */,
 				527951D220CC07A000B9119D /* ViewController.swift in Sources */,
 				527951CE20CC07A000B9119D /* AppDelegate.swift in Sources */,
+				B8F5CCCB214181B70034D0EF /* ARMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +305,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SBWZW765RG;
+				DEVELOPMENT_TEAM = 7WYYLVSTD6;
 				INFOPLIST_FILE = SpaceShipMuseum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianadvent.SpaceShipMuseum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickgatewood.SpaceShipMuseum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,13 +323,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SBWZW765RG;
+				DEVELOPMENT_TEAM = 7WYYLVSTD6;
 				INFOPLIST_FILE = SpaceShipMuseum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianadvent.SpaceShipMuseum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickgatewood.SpaceShipMuseum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

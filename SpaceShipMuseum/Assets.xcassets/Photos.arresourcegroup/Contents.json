@@ -6,6 +6,9 @@
   "resources" : [
     {
       "filename" : "ship.arreferenceimage"
+    },
+    {
+      "filename" : "wt_logo.arreferenceimage"
     }
   ]
 }

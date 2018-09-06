@@ -14,6 +14,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+//    let arMenuView: NibView = NibView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,11 +63,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let imageAnchor = anchor as? ARImageAnchor {
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
-            plane.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.8)
+//            plane.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.8)
             
             let planeNode = SCNNode(geometry: plane)
             planeNode.eulerAngles.x = -.pi / 2
             
+            let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
+            arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            plane.firstMaterial?.diffuse.contents = arMenuViewController.view
             
             let shipScene = SCNScene(named: "art.scnassets/ship.scn")!
             let shipNode = shipScene.rootNode.childNodes.first!
