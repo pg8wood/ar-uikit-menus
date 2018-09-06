@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -25,9 +25,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/GameScene.scn")!
         
+        sceneView.session.delegate = self
+        
         // Set the scene to the view
         sceneView.scene = scene
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,10 +44,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
 
         configuration.trackingImages = trackedImages
-        configuration.maximumNumberOfTrackedImages = 1
+        configuration.maximumNumberOfTrackedImages = 2
         
         // Run the view's session
         sceneView.session.run(configuration)
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,8 +68,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let imageAnchor = anchor as? ARImageAnchor {
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
-//            plane.firstMaterial?.diffuse.contents = UIColor(white: 1, alpha: 0.8)
-            
             let planeNode = SCNNode(geometry: plane)
             planeNode.eulerAngles.x = -.pi / 2
             
@@ -79,14 +82,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             planeNode.addChildNode(shipNode)
             
-            
             node.addChildNode(planeNode)
-            
         }
         
         return node
-        
     }
     
+    // MARK: - ARSessionDelegate
     
+//    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+//        print("did update frame")
+//        guard let rawFeaturePoints = frame.rawFeaturePoints else {
+//            return
+//        }
+//
+//
+//        for point in rawFeaturePoints.points  {
+//            print("adding node to scene")
+//            let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.5))
+//            sphereNode.position = SCNVector3(point)
+//
+//            sceneView.scene.rootNode.addChildNode(sphereNode)
+//        }
+//    }
 }
