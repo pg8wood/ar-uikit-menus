@@ -8,14 +8,11 @@
 
 import UIKit
 
-class ARMenuView: NibView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+class ARMenuView: UIView {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var bottomButton: UIButton!
+    
+    
 }

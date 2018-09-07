@@ -11,12 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARMenuViewController" customModule="SpaceShipMuseum" customModuleProvider="target">
             <connections>
-                <outlet property="leftButton" destination="HyE-ND-6F6" id="v2p-PC-Jdi"/>
+                <outlet property="arMenuView" destination="iN0-l3-epB" id="cVH-dJ-P2D"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wzc-c8-mYm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleAspectFill" id="iN0-l3-epB">
+        <view contentMode="scaleAspectFill" id="iN0-l3-epB" customClass="ARMenuView" customModule="SpaceShipMuseum" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -70,6 +70,11 @@
                 <constraint firstItem="cYv-nw-wZN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oUg-Qh-Ry2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bottomButton" destination="njF-HT-Tzr" id="eUE-Gs-fHS"/>
+                <outlet property="titleLabel" destination="cYv-nw-wZN" id="BSE-kH-gh8"/>
+                <outlet property="topButton" destination="HyE-ND-6F6" id="8q1-cU-gkh"/>
+            </connections>
             <point key="canvasLocation" x="66.400000000000006" y="-69.715142428785612"/>
         </view>
     </objects>

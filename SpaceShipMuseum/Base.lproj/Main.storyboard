@@ -40,6 +40,7 @@
                         <viewLayoutGuide key="safeArea" id="irc-Sz-4jp"/>
                     </view>
                     <connections>
+                        <outlet property="dotImage" destination="YhW-GY-LkD" id="AYW-VN-azA"/>
                         <outlet property="sceneView" destination="9rL-nT-KR4" id="eck-aR-DoA"/>
                     </connections>
                 </viewController>

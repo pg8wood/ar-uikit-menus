@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var dotImage: UIImageView!
     
 //    let arMenuView: NibView = NibView()
     
@@ -48,8 +49,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
         // Run the view's session
         sceneView.session.run(configuration)
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,16 +70,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             let planeNode = SCNNode(geometry: plane)
             planeNode.eulerAngles.x = -.pi / 2
             
-            let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
-            arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            plane.firstMaterial?.diffuse.contents = arMenuViewController.view
-            
-            let shipScene = SCNScene(named: "art.scnassets/ship.scn")!
-            let shipNode = shipScene.rootNode.childNodes.first!
-            shipNode.position = SCNVector3Zero
-            shipNode.position.z = 0.15
-            
-            planeNode.addChildNode(shipNode)
+            DispatchQueue.main.async { // TODO see if this is necessary
+                let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
+                arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                plane.firstMaterial?.diffuse.contents = arMenuViewController.arMenuView
+            }
             
             node.addChildNode(planeNode)
         }
@@ -90,19 +84,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     // MARK: - ARSessionDelegate
     
-//    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-//        print("did update frame")
-//        guard let rawFeaturePoints = frame.rawFeaturePoints else {
-//            return
-//        }
-//
-//
-//        for point in rawFeaturePoints.points  {
-//            print("adding node to scene")
-//            let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.5))
-//            sphereNode.position = SCNVector3(point)
-//
-//            sceneView.scene.rootNode.addChildNode(sphereNode)
-//        }
-//    }
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        let centerImagePosition = sceneView.center
+        
+        // Conduct a hit test based on a feature point that ARKit detected to find out what 3D point this 2D coordinate relates to
+        let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
+        
+        guard !hitTestResult.isEmpty, let hitNode = hitTestResult.first?.node else {
+            return
+        }
+        
+        let hitNodeContents = hitNode.geometry?.firstMaterial?.diffuse.contents
+        let geometry = hitNode.geometry
+    
+        if let hitView = hitNodeContents as? ARMenuView {
+            hitView.alpha = 0.2
+        }
+    }
 }
