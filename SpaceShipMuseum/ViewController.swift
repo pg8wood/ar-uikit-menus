@@ -14,6 +14,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var dotImage: UIImageView!
+    @IBOutlet weak var coordinatesLabel: UILabel!
     
 //    let arMenuView: NibView = NibView()
     
@@ -99,6 +100,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
         if let hitView = hitNodeContents as? ARMenuView {
             hitView.alpha = 0.2
+            
+            let localCoordinates = hitTestResult.first?.localCoordinates ?? SCNVector3() // bad
+            
+            let localX = CGFloat(localCoordinates.x)
+            let localY = CGFloat(localCoordinates.y)
+            
+            if let view = hitView.hitTest(CGPoint(x: localX, y: localY), with: nil) {
+                print("found 2nd view")
+                coordinatesLabel.text = String(format: "\(type(of: view)) local coordinates: (%.2f, %.2f)", localX, localY)
+                view.backgroundColor = UIColor.black
+            } else {
+                coordinatesLabel.text = "Not looking at any child UIViews."
+            }
         }
     }
 }

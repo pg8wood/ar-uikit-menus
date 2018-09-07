@@ -27,12 +27,22 @@
                                     <constraint firstAttribute="height" constant="5" id="el3-wv-3pY"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not looking at any child UIViews." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtB-9t-twK">
+                                <rect key="frame" x="16" y="757.66666666666663" width="343" height="20.333333333333371"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.23529411759999999" blue="0.25098039220000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YhW-GY-LkD" firstAttribute="centerX" secondItem="4dg-bc-I8c" secondAttribute="centerX" id="2tX-Rt-OtB"/>
+                            <constraint firstItem="MtB-9t-twK" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" constant="16" id="Ikf-tn-7GN"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="top" secondItem="4dg-bc-I8c" secondAttribute="top" id="MtC-eQ-g3G"/>
                             <constraint firstItem="YhW-GY-LkD" firstAttribute="centerY" secondItem="4dg-bc-I8c" secondAttribute="centerY" id="VLB-TH-AAP"/>
+                            <constraint firstItem="irc-Sz-4jp" firstAttribute="trailing" secondItem="MtB-9t-twK" secondAttribute="trailing" constant="16" id="fTw-X0-Et2"/>
+                            <constraint firstItem="MtB-9t-twK" firstAttribute="bottom" secondItem="irc-Sz-4jp" secondAttribute="bottom" id="qGE-g6-B0Q"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="trailing" secondItem="irc-Sz-4jp" secondAttribute="trailing" id="rRo-fq-xoE"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" id="vFe-03-dL5"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="bottom" secondItem="irc-Sz-4jp" secondAttribute="bottom" constant="34" id="zen-fx-R77"/>
@@ -40,6 +50,7 @@
                         <viewLayoutGuide key="safeArea" id="irc-Sz-4jp"/>
                     </view>
                     <connections>
+                        <outlet property="coordinatesLabel" destination="MtB-9t-twK" id="iOl-m6-TrX"/>
                         <outlet property="dotImage" destination="YhW-GY-LkD" id="AYW-VN-azA"/>
                         <outlet property="sceneView" destination="9rL-nT-KR4" id="eck-aR-DoA"/>
                     </connections>
