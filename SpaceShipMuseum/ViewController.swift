@@ -97,6 +97,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
         
         guard !hitTestResult.isEmpty, let hitNode = hitTestResult.first?.node else {
+            for vc in viewControllerDict.values {
+                if let arVC = vc as? ARMenuViewController {
+                    arVC.resetButtonAppearances()
+                }
+            }
+            
             scnNodeCoordinatesLabel.text = "Not looking at any SCNNodes."
             firstMaterialCoordinatesLabel.text = ""
             firstMaterialChildViewCoordinatesLabel.text = ""
@@ -120,7 +126,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) coordinates: (%.2f, %.2f)", nodeHitCoordinates.x, nodeHitCoordinates.y)
             firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) coordinates: (%.2f, %.2f)", nodeTextureHitCoordinates.x, nodeTextureHitCoordinates.y)
             
-            // 
+            //
             hitViewController.reverseHitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
         }
     }

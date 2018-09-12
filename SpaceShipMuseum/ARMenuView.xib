@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="arMenuView" destination="iN0-l3-epB" id="zKo-XG-Hvm"/>
                 <outlet property="bottomButton" destination="njF-HT-Tzr" id="8Lc-qd-jdS"/>
+                <outlet property="dotImage" destination="WXt-39-psp" id="MhM-k8-A57"/>
                 <outlet property="titleLabel" destination="cYv-nw-wZN" id="Ewn-tQ-qo2"/>
                 <outlet property="topButton" destination="HyE-ND-6F6" id="Qku-37-bIx"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wzc-c8-mYm"/>
@@ -46,6 +47,11 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
+                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot_orange" translatesAutoresizingMaskIntoConstraints="NO" id="WXt-39-psp">
+                            <rect key="frame" x="182" y="153" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -76,4 +82,7 @@
             <point key="canvasLocation" x="66.400000000000006" y="-69.715142428785612"/>
         </view>
     </objects>
+    <resources>
+        <image name="dot_orange" width="168" height="164"/>
+    </resources>
 </document>
