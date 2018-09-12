@@ -16,33 +16,30 @@ class ARMenuViewController: UIViewController {
     @IBOutlet weak var dotImage: UIImageView!
     
     override func viewDidLoad() {
-        let imageView = UIImageView(image: UIImage(named: "dot"))
-        imageView.frame.size.width = 10
-        imageView.frame.size.height = 10
-        imageView.center = CGPoint(x: 0, y: 0)
-        arMenuView.addSubview(imageView)
-        topButton.frame.origin = topButton.center
+        dotImage.layer.borderColor = UIColor.black.cgColor
+        dotImage.layer.borderWidth = 1
     }
     
     func reverseHitTestViews(point: CGPoint) {
         if arMenuView.point(inside: point, with: nil) {
+             let pointInARMenuView = CGPoint(x: point.x * view.frame.size.width, y: point.y * view.frame.size.height) // scale factor is off!
+            
             UIView.animate(withDuration: 0.1, animations: { [weak self] in
                 guard let sSelf = self else {
                     return
                 }
-                let newDotPoint = CGPoint(x: point.x * 150, y: point.y * 150) // scale factor is off!
-                
+               
                 sSelf.dotImage.alpha = 1
-                sSelf.dotImage.layer.position = newDotPoint
-                print("moving dot to \(point)")
+                sSelf.dotImage.layer.position = pointInARMenuView
+                print("moving dot to \(pointInARMenuView)")
             })
+            
+            // need a way better way to do this
+            reverseHitTestButton(button: topButton, point: pointInARMenuView)
+            reverseHitTestButton(button: bottomButton, point: pointInARMenuView)
         } else {
             dotImage.alpha = 0
         }
-        
-        // need a way better way to do this
-        reverseHitTestButton(button: topButton, point: point)
-        reverseHitTestButton(button: bottomButton, point: point)
     }
     
     func resetButtonAppearances() {

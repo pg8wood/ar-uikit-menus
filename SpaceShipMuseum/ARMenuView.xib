@@ -47,7 +47,7 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot_orange" translatesAutoresizingMaskIntoConstraints="NO" id="WXt-39-psp">
+                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot_orange" translatesAutoresizingMaskIntoConstraints="NO" id="WXt-39-psp">
                             <rect key="frame" x="182" y="153" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>

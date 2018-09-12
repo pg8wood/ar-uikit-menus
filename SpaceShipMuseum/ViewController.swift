@@ -109,10 +109,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             return
         }
         
-        let hitNodeContents = hitNode.geometry?.firstMaterial?.diffuse.contents
+        guard let hitPlane = hitNode.geometry as? SCNPlane else {
+            print("not a plane")
+            return
+        }
+        
+        let hitNodeContents = hitPlane.firstMaterial?.diffuse.contents
     
         if let hitView = hitNodeContents as? ARMenuView {
-            guard let nodeHitCoordinates = hitTestResult.first?.localCoordinates, let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: 0) else { // what is mapping channel 0?
+            guard let nodeHitCoordinates = hitTestResult.first?.localCoordinates,
+                let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: hitPlane.firstMaterial?.diffuse.mappingChannel ?? 0) else { 
                 print("no local coordinates")
                 return
             }
