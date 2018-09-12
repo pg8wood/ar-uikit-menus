@@ -15,28 +15,28 @@ class ARMenuViewController: UIViewController {
     @IBOutlet weak var bottomButton: UIButton!
     
     override func viewDidLoad() {
-//        let imageView = UIImageView(image: UIImage(named: "dot"))
-//        imageView.frame.size.width = 10
-//        imageView.frame.size.height = 10
-//        imageView.center = topButton.center
-//        arMenuView.addSubview(imageView)
-//        topButton.frame.origin = topButton.center
+        let imageView = UIImageView(image: UIImage(named: "dot"))
+        imageView.frame.size.width = 10
+        imageView.frame.size.height = 10
+        imageView.center = CGPoint(x: 0, y: 0)
+        arMenuView.addSubview(imageView)
+        topButton.frame.origin = topButton.center
     }
     
-    func hitTestViews(point: CGPoint) {
+    func reverseHitTestViews(point: CGPoint) {
         // need a way better way to do this
-        hitTestButton(button: topButton, point: point)
+        reverseHitTestButton(button: topButton, point: point)
 //        hitTestButton(button: bottomButton, point: point)
     }
     
     // need a way better way to do this
-    private func hitTestButton(button: UIButton, point: CGPoint) {
-        let imageView = UIImageView(image: UIImage(named: "dot"))
-        imageView.frame.size.width = 10
-        imageView.frame.size.height = 10
-//        let point = arMenuView.convert(point, to: button)
-        imageView.center = point
-        button.addSubview(imageView)
+    private func reverseHitTestButton(button: UIButton, point: CGPoint) {
+//        let imageView = UIImageView(image: UIImage(named: "dot"))
+//        imageView.frame.size.width = 10
+//        imageView.frame.size.height = 10
+////        let point = arMenuView.convert(point, to: button)
+//        imageView.center = point
+//        arMenuView.addSubview(imageView)
  
         button.alpha = button.point(inside: point, with: nil) ? 0.5 : 1.0
         print("testing button for point: \(point)")

@@ -106,7 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let hitNodeContents = hitNode.geometry?.firstMaterial?.diffuse.contents
     
         if let hitView = hitNodeContents as? ARMenuView {
-            guard let localCoordinates = hitTestResult.first?.localCoordinates else {
+            guard let nodeHitCoordinates = hitTestResult.first?.localCoordinates, let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: 0) else { // what is mapping channel 0?
                 print("no local coordinates")
                 return
             }
@@ -116,13 +116,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                 return
             }
             
-            let localX = CGFloat(localCoordinates.x)
-            let localY = CGFloat(localCoordinates.y)
+            // update labels
+            scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) coordinates: (%.2f, %.2f)", nodeHitCoordinates.x, nodeHitCoordinates.y)
+            firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) coordinates: (%.2f, %.2f)", nodeTextureHitCoordinates.x, nodeTextureHitCoordinates.y)
             
-            let rayIntersectionPoint = sceneView.convert(CGPoint(x: localX, y: localY), to: hitView.coordinateSpace)
-            firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) local coordinates: (%.2f, %.2f)", rayIntersectionPoint.x, rayIntersectionPoint.y)
-            hitViewController.hitTestViews(point: rayIntersectionPoint)
-            scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) local coordinates: (%.2f, %.2f)", localX, localY)
+            // 
+            hitViewController.reverseHitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
         }
     }
 }
