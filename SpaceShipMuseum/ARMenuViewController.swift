@@ -9,14 +9,29 @@
 import UIKit
 
 class ARMenuViewController: UIViewController {
-    @IBOutlet var arMenuView: UIView!
+    @IBOutlet var arMenuView: ARMenuView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var leftButton: UIButton!
-    @IBOutlet weak var rightButton:UIButton!
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var bottomButton: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
-//        titleLabel.textColor = #colorLiteral(red: 0.2078431373, green: 0.2352941176, blue: 0.2509803922, alpha: 1)
-        leftButton.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.3725490196, blue: 0.3725490196, alpha: 1)
-//        rightButton.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.3725490196, blue: 0.3725490196, alpha: 1)
+    override func viewDidLoad() {
+//        let imageView = UIImageView(image: UIImage(named: "dot"))
+//        imageView.frame.size.width = 10
+//        imageView.frame.size.height = 10
+//        imageView.center = topButton.center
+//        arMenuView.addSubview(imageView)
+    }
+    
+    func hitTestViews(point: CGPoint) {
+        // need a way better way to do this
+        hitTestButton(button: topButton, point: point)
+//        hitTestButton(button: bottomButton, point: point)
+    }
+    
+    // need a way better way to do this
+    private func hitTestButton(button: UIButton, point: CGPoint) {
+//        let point = arMenuView.convert(point, to: button)
+        button.alpha = button.point(inside: point, with: nil) ? 0.5 : 1.0
+        print("testing button for point: \(point)")
     }
 }

@@ -10,9 +10,9 @@ import UIKit
 
 class ARMenuView: UIView {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var topButton: UIButton!
-    @IBOutlet weak var bottomButton: UIButton!
-    
+//    @IBOutlet weak var titleLabel: UILabel!
+//    @IBOutlet weak var topButton: UIButton!
+//    @IBOutlet weak var bottomButton: UIButton!
+//    
     
 }

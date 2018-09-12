@@ -16,6 +16,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var dotImage: UIImageView!
     @IBOutlet weak var coordinatesLabel: UILabel!
     
+    var viewControllerDict = Dictionary<UIView, UIViewController>()
+    
 //    let arMenuView: NibView = NibView()
     
     override func viewDidLoad() {
@@ -71,8 +73,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             let planeNode = SCNNode(geometry: plane)
             planeNode.eulerAngles.x = -.pi / 2
             
-            DispatchQueue.main.async { // TODO see if this is necessary
+            DispatchQueue.main.async { [weak self] in // TODO see if this is necessary
                 let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
+                self?.viewControllerDict[arMenuViewController.view] = arMenuViewController
                 arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 plane.firstMaterial?.diffuse.contents = arMenuViewController.arMenuView
             }
@@ -92,6 +95,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
         
         guard !hitTestResult.isEmpty, let hitNode = hitTestResult.first?.node else {
+            print("empty hit test")
             return
         }
         
@@ -99,15 +103,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let geometry = hitNode.geometry
     
         if let hitView = hitNodeContents as? ARMenuView {
-            hitView.alpha = 0.2
+            guard let localCoordinates = hitTestResult.first?.localCoordinates else {
+                print("no local coordinates")
+                return
+            }
             
-            let localCoordinates = hitTestResult.first?.localCoordinates ?? SCNVector3() // bad
+            
+            guard let hitViewController = viewControllerDict[hitView]xx as? ARMenuViewController else {
+                print("didn't find a ViewController to use")
+                return
+            }
             
             let localX = CGFloat(localCoordinates.x)
             let localY = CGFloat(localCoordinates.y)
             
+            hitViewController.hitTestViews(point: CGPoint(x: localX, y: localY))
+            
+            
             if let view = hitView.hitTest(CGPoint(x: localX, y: localY), with: nil) {
-                print("found 2nd view")
                 coordinatesLabel.text = String(format: "\(type(of: view)) local coordinates: (%.2f, %.2f)", localX, localY)
                 view.backgroundColor = UIColor.black
             } else {
