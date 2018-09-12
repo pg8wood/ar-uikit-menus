@@ -20,6 +20,7 @@ class ARMenuViewController: UIViewController {
 //        imageView.frame.size.height = 10
 //        imageView.center = topButton.center
 //        arMenuView.addSubview(imageView)
+//        topButton.frame.origin = topButton.center
     }
     
     func hitTestViews(point: CGPoint) {
@@ -30,7 +31,13 @@ class ARMenuViewController: UIViewController {
     
     // need a way better way to do this
     private func hitTestButton(button: UIButton, point: CGPoint) {
+        let imageView = UIImageView(image: UIImage(named: "dot"))
+        imageView.frame.size.width = 10
+        imageView.frame.size.height = 10
 //        let point = arMenuView.convert(point, to: button)
+        imageView.center = point
+        button.addSubview(imageView)
+ 
         button.alpha = button.point(inside: point, with: nil) ? 0.5 : 1.0
         print("testing button for point: \(point)")
     }

@@ -20,6 +20,20 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rL-nT-KR4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCNNode first material coordinate space" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ky-Gp-arY">
+                                <rect key="frame" x="16" y="709" width="343" height="20.333333333333371"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.23529411759999999" blue="0.25098039220000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FirstMaterial's first child view coordinate space " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKg-Zo-dBY">
+                                <rect key="frame" x="16" y="737.33333333333337" width="343" height="40.666666666666629"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.23529411759999999" blue="0.25098039220000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="YhW-GY-LkD">
                                 <rect key="frame" x="185" y="403.66666666666669" width="5" height="5"/>
                                 <constraints>
@@ -27,8 +41,8 @@
                                     <constraint firstAttribute="height" constant="5" id="el3-wv-3pY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not looking at any child UIViews." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtB-9t-twK">
-                                <rect key="frame" x="16" y="757.66666666666663" width="343" height="20.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCNNode coordinate space" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtB-9t-twK">
+                                <rect key="frame" x="16" y="680.66666666666663" width="343" height="20.333333333333371"/>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.23529411759999999" blue="0.25098039220000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,21 +52,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YhW-GY-LkD" firstAttribute="centerX" secondItem="4dg-bc-I8c" secondAttribute="centerX" id="2tX-Rt-OtB"/>
-                            <constraint firstItem="MtB-9t-twK" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" constant="16" id="Ikf-tn-7GN"/>
+                            <constraint firstItem="irc-Sz-4jp" firstAttribute="trailing" secondItem="MtB-9t-twK" secondAttribute="trailing" constant="16" id="81J-zj-arE"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="top" secondItem="4dg-bc-I8c" secondAttribute="top" id="MtC-eQ-g3G"/>
+                            <constraint firstItem="2Ky-Gp-arY" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" constant="16" id="SB5-gm-hhh"/>
+                            <constraint firstItem="MtB-9t-twK" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" constant="16" id="Ukr-kW-IAR"/>
                             <constraint firstItem="YhW-GY-LkD" firstAttribute="centerY" secondItem="4dg-bc-I8c" secondAttribute="centerY" id="VLB-TH-AAP"/>
-                            <constraint firstItem="irc-Sz-4jp" firstAttribute="trailing" secondItem="MtB-9t-twK" secondAttribute="trailing" constant="16" id="fTw-X0-Et2"/>
-                            <constraint firstItem="MtB-9t-twK" firstAttribute="bottom" secondItem="irc-Sz-4jp" secondAttribute="bottom" id="qGE-g6-B0Q"/>
+                            <constraint firstItem="gKg-Zo-dBY" firstAttribute="bottom" secondItem="irc-Sz-4jp" secondAttribute="bottom" id="dIA-pN-Bbw"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="trailing" secondItem="irc-Sz-4jp" secondAttribute="trailing" id="rRo-fq-xoE"/>
+                            <constraint firstItem="gKg-Zo-dBY" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" constant="16" id="rbS-vR-IO1"/>
+                            <constraint firstItem="irc-Sz-4jp" firstAttribute="trailing" secondItem="2Ky-Gp-arY" secondAttribute="trailing" constant="16" id="s9s-Ck-g7s"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="leading" secondItem="irc-Sz-4jp" secondAttribute="leading" id="vFe-03-dL5"/>
+                            <constraint firstItem="2Ky-Gp-arY" firstAttribute="top" secondItem="MtB-9t-twK" secondAttribute="bottom" constant="8" id="wel-SP-HCP"/>
+                            <constraint firstItem="irc-Sz-4jp" firstAttribute="trailing" secondItem="gKg-Zo-dBY" secondAttribute="trailing" constant="16" id="xqz-sS-Vp1"/>
+                            <constraint firstItem="gKg-Zo-dBY" firstAttribute="top" secondItem="2Ky-Gp-arY" secondAttribute="bottom" constant="8" id="zBe-Yu-lFK"/>
                             <constraint firstItem="9rL-nT-KR4" firstAttribute="bottom" secondItem="irc-Sz-4jp" secondAttribute="bottom" constant="34" id="zen-fx-R77"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="irc-Sz-4jp"/>
                     </view>
                     <connections>
-                        <outlet property="coordinatesLabel" destination="MtB-9t-twK" id="iOl-m6-TrX"/>
                         <outlet property="dotImage" destination="YhW-GY-LkD" id="AYW-VN-azA"/>
+                        <outlet property="firstMaterialChildViewCoordinatesLabel" destination="gKg-Zo-dBY" id="zrv-qE-2Lr"/>
+                        <outlet property="firstMaterialCoordinatesLabel" destination="2Ky-Gp-arY" id="EEk-1j-Mf9"/>
                         <outlet property="sceneView" destination="9rL-nT-KR4" id="eck-aR-DoA"/>
+                        <outlet property="scnNodeCoordinatesLabel" destination="MtB-9t-twK" id="ekk-5J-XnB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

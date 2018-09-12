@@ -14,7 +14,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var dotImage: UIImageView!
-    @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var scnNodeCoordinatesLabel: UILabel!
+    @IBOutlet weak var firstMaterialCoordinatesLabel: UILabel!
+    @IBOutlet weak var firstMaterialChildViewCoordinatesLabel: UILabel!
     
     var viewControllerDict = Dictionary<UIView, UIViewController>()
     
@@ -95,21 +97,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
         
         guard !hitTestResult.isEmpty, let hitNode = hitTestResult.first?.node else {
-            print("empty hit test")
+            scnNodeCoordinatesLabel.text = "Not looking at any SCNNodes."
+            firstMaterialCoordinatesLabel.text = ""
+            firstMaterialChildViewCoordinatesLabel.text = ""
             return
         }
         
         let hitNodeContents = hitNode.geometry?.firstMaterial?.diffuse.contents
-        let geometry = hitNode.geometry
     
         if let hitView = hitNodeContents as? ARMenuView {
             guard let localCoordinates = hitTestResult.first?.localCoordinates else {
                 print("no local coordinates")
                 return
             }
-            
-            
-            guard let hitViewController = viewControllerDict[hitView]xx as? ARMenuViewController else {
+
+            guard let hitViewController = viewControllerDict[hitView] as? ARMenuViewController else {
                 print("didn't find a ViewController to use")
                 return
             }
@@ -117,15 +119,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             let localX = CGFloat(localCoordinates.x)
             let localY = CGFloat(localCoordinates.y)
             
-            hitViewController.hitTestViews(point: CGPoint(x: localX, y: localY))
-            
-            
-            if let view = hitView.hitTest(CGPoint(x: localX, y: localY), with: nil) {
-                coordinatesLabel.text = String(format: "\(type(of: view)) local coordinates: (%.2f, %.2f)", localX, localY)
-                view.backgroundColor = UIColor.black
-            } else {
-                coordinatesLabel.text = "Not looking at any child UIViews."
-            }
+            let rayIntersectionPoint = sceneView.convert(CGPoint(x: localX, y: localY), to: hitView.coordinateSpace)
+            firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) local coordinates: (%.2f, %.2f)", rayIntersectionPoint.x, rayIntersectionPoint.y)
+            hitViewController.hitTestViews(point: rayIntersectionPoint)
+            scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) local coordinates: (%.2f, %.2f)", localX, localY)
         }
     }
 }
