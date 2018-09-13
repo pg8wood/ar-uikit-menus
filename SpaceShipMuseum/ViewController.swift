@@ -131,8 +131,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) coordinates: (%.2f, %.2f)", nodeHitCoordinates.x, nodeHitCoordinates.y)
             firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) coordinates: (%.2f, %.2f)", nodeTextureHitCoordinates.x, nodeTextureHitCoordinates.y)
             
-            //
-            hitViewController.reverseHitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
+            hitViewController.hitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
         }
     }
 }

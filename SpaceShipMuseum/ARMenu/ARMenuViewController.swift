@@ -13,47 +13,51 @@ class ARMenuViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topButton: ARFocusableUIButton!
     @IBOutlet weak var bottomButton: ARFocusableUIButton!
-    @IBOutlet weak var hitPointIndicator: UIImageView!
+    
+    var hitPointIndicator: UIImageView!
     
     var focusObservers = [ObjectIdentifier: FocusObserver]()
     override func viewDidLoad() {
-        hitPointIndicator.layer.borderColor = UIColor.black.cgColor
-        hitPointIndicator.layer.borderWidth = 1
-        
+        renderHitPointIndicator()
         addObserver(topButton)
         addObserver(bottomButton)
     }
+    
+    private func renderHitPointIndicator() {
+        hitPointIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        hitPointIndicator.image = UIImage(named: "dot_orange")
+        hitPointIndicator.contentMode = .scaleAspectFill
+        
+        arMenuView.addSubview(hitPointIndicator)
+    }
 
     
-    func reverseHitTestViews(point: CGPoint) {
-        if arMenuView.point(inside: point, with: nil) {
-            // TODO this translation of coordinates is always necessary
-            let pointInARMenuView = CGPoint(x: point.x * view.frame.size.width, y: point.y * view.frame.size.height) // scale factor is off!
+    func hitTestViews(point: CGPoint) {
+        // TODO this translation of coordinates is always necessary.
+        let pointInARMenuView = CGPoint(x: point.x * arMenuView.frame.size.width, y: point.y * arMenuView.frame.size.height) // scale factor is off!
+        
+        if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
+            animateViewHitPointIndicator(toPoint: pointInARMenuView)
             
-            if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
-                animateViewHitPointIndicator(toPoint: pointInARMenuView)
+            if let observer = arMenuHitTestResult as? FocusObserver {
+                // Only allow one observer to have focus at any given time
+                notifyAllObserversLostFocus()
                 
-                if let observer = arMenuHitTestResult as? FocusObserver {
-                    observer.gainedFocus()
-                    return
-                }
+                observer.gainedFocus()
+                return
             }
-
-        } else {
-            hitPointIndicator.alpha = 0
         }
         
         notifyAllObserversLostFocus()
     }
     
     private func animateViewHitPointIndicator(toPoint: CGPoint) {
-        UIView.animate(withDuration: 0.1, animations: { [weak self] in
-            // Yay Swift 4.2!!!
-            guard let self = self else { return }
+        UIView.animate(withDuration: 0.05, animations: { [weak self] in
+            guard let self = self else { return } // Yay Swift 4.2!
             
             self.hitPointIndicator.alpha = 1
             self.hitPointIndicator.layer.position = toPoint
-//            print("moving dot to \(toPoint)")
+            print("toPoint: \(toPoint) | hitPointIndicatorPosition: \(self.hitPointIndicator.layer.position)")
         })
     }
     

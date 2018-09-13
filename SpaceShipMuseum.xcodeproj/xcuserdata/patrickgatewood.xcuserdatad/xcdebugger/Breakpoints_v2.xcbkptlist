@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceShipMuseum/ViewController.swift"
-            timestampString = "558555917.110967"
+            timestampString = "558558335.476862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceShipMuseum/ARMenu/ARMenuViewController.swift"
-            timestampString = "558555917.111055"
+            timestampString = "558558335.4769371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "reverseHitTestViews(point:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "hitTestViews(point:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
