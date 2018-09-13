@@ -1,6 +1,6 @@
 //
 //  ARMenuView.swift
-//  SpaceShipMuseum
+//  ARKit-UI-Views
 //
 //  Created by Patrick Gatewood on 9/6/18.
 //  Copyright © 2018 Brian Advent. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 
 class ARMenuViewController: UIViewController {
-    @IBOutlet var arMenuView: ARMenuView!
+    @IBOutlet var arMenuView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topButton: ARFocusableUIButton!
     @IBOutlet weak var bottomButton: ARFocusableUIButton!
@@ -33,8 +33,8 @@ class ARMenuViewController: UIViewController {
 
     
     func hitTestViews(point: CGPoint) {
-        // TODO this translation of coordinates is always necessary.
-        let pointInARMenuView = CGPoint(x: point.x * arMenuView.frame.size.width, y: point.y * arMenuView.frame.size.height) // scale factor is off!
+        // TODO this translation of coordinates is always necessary. maybe should be abstracted away
+        let pointInARMenuView = CGPoint(x: point.x * arMenuView.frame.size.width, y: point.y * arMenuView.frame.size.height)
         
         if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
             animateViewHitPointIndicator(toPoint: pointInARMenuView)
@@ -57,7 +57,6 @@ class ARMenuViewController: UIViewController {
             
             self.hitPointIndicator.alpha = 1
             self.hitPointIndicator.layer.position = toPoint
-            print("toPoint: \(toPoint) | hitPointIndicatorPosition: \(self.hitPointIndicator.layer.position)")
         })
     }
     

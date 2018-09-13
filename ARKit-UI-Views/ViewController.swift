@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  SpaceShipMuseum
+//  ARKit-UI-Views
 //
-//  Created by Brian Advent on 09.06.18.
+//  Created by Patrick Gatewood on 9/13/18.
 //  Copyright © 2018 Brian Advent. All rights reserved.
 //
 
@@ -10,60 +10,48 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var dotImage: UIImageView!
     @IBOutlet weak var scnNodeCoordinatesLabel: UILabel!
     @IBOutlet weak var firstMaterialCoordinatesLabel: UILabel!
-    @IBOutlet weak var firstMaterialChildViewCoordinatesLabel: UILabel!
-    
+
     var viewControllerDict = Dictionary<UIView, UIViewController>()
-    
-//    let arMenuView: NibView = NibView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Create a new scene
+
         let scene = SCNScene(named: "art.scnassets/GameScene.scn")!
-        
-        sceneView.session.delegate = self
-        
-        // Set the scene to the view
         sceneView.scene = scene
+        
+        sceneView.delegate = self
+        sceneView.session.delegate = self
     }
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARImageTrackingConfiguration()
         
         guard let trackedImages = ARReferenceImage.referenceImages(inGroupNamed: "Photos", bundle: Bundle.main) else {
-            print("No images available")
             return
         }
 
         configuration.trackingImages = trackedImages
         configuration.maximumNumberOfTrackedImages = 2
         
-        // Run the view's session
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
     }
+}
 
-    // MARK: - ARSCNViewDelegate
+// MARK: - ARSCNViewDelegate
+extension ViewController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
@@ -84,11 +72,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             
             node.addChildNode(planeNode)
         }
-        
         return node
     }
-    
-    // MARK: - ARSessionDelegate
+}
+
+
+// MARK: - ARSessionDelegate
+extension ViewController: ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         let centerImagePosition = sceneView.center
@@ -99,8 +89,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         guard let hitNode = hitTestResult.first?.node else {
             scnNodeCoordinatesLabel.text = "Not looking at any SCNNodes."
             firstMaterialCoordinatesLabel.text = ""
-            firstMaterialChildViewCoordinatesLabel.text = ""
-            
+
             for focusObservable in viewControllerDict.values.compactMap({ $0 as? FocusObservable }) {
                 focusObservable.notifyAllObserversLostFocus()
             }
@@ -109,13 +98,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         }
         
         guard let hitPlane = hitNode.geometry as? SCNPlane else {
-            print("not a plane")
             return
         }
         
         let hitNodeContents = hitPlane.firstMaterial?.diffuse.contents
     
-        if let hitView = hitNodeContents as? ARMenuView {
+        if let hitView = hitNodeContents as? UIView {
             guard let nodeHitCoordinates = hitTestResult.first?.localCoordinates,
                 let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: hitPlane.firstMaterial?.diffuse.mappingChannel ?? 0) else { 
                 print("no local coordinates")

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARMenuViewController" customModule="SpaceShipMuseum" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARMenuViewController" customModule="ARKit_UI_Views" customModuleProvider="target">
             <connections>
                 <outlet property="arMenuView" destination="iN0-l3-epB" id="zKo-XG-Hvm"/>
                 <outlet property="bottomButton" destination="njF-HT-Tzr" id="8Lc-qd-jdS"/>
@@ -19,7 +19,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleAspectFit" id="iN0-l3-epB" customClass="ARMenuView" customModule="SpaceShipMuseum" customModuleProvider="target">
+        <view contentMode="scaleAspectFit" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -32,14 +32,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1O-pj-bPa">
                     <rect key="frame" x="0.0" y="43" width="375" height="624"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyE-ND-6F6" userLabel="Top Button" customClass="ARFocusableUIButton" customModule="SpaceShipMuseum" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyE-ND-6F6" userLabel="Top Button" customClass="ARFocusableUIButton" customModule="ARKit_UI_Views" customModuleProvider="target">
                             <rect key="frame" x="8" y="8" width="359" height="300"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njF-HT-Tzr" customClass="ARFocusableUIButton" customModule="SpaceShipMuseum" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njF-HT-Tzr" customClass="ARFocusableUIButton" customModule="ARKit_UI_Views" customModuleProvider="target">
                             <rect key="frame" x="8" y="316" width="359" height="300"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Button">
