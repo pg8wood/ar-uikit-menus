@@ -19,16 +19,25 @@ class ARMenuViewController: UIViewController {
         hitPointIndicator.layer.borderColor = UIColor.black.cgColor
         hitPointIndicator.layer.borderWidth = 1
     }
+
     
     func reverseHitTestViews(point: CGPoint) {
         if arMenuView.point(inside: point, with: nil) {
+            // TODO this translation of coordinates is always necessary
             let pointInARMenuView = CGPoint(x: point.x * view.frame.size.width, y: point.y * view.frame.size.height) // scale factor is off!
             
-            animateViewHitPointIndicator(toPoint: pointInARMenuView)
+            if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
+                print("ar menu hit test: \(arMenuHitTestResult)")
+                
+                if let observer = arMenuHitTestResult as? FocusObserver {
+                    print("\(type(of: arMenuHitTestResult)) gained focus")
+                    observer.gainedFocus()
+                }
 
-            // need a way better way to do this
-            reverseHitTestButton(button: topButton, point: pointInARMenuView)
-            reverseHitTestButton(button: bottomButton, point: pointInARMenuView)
+                // TODO unset: probably best to listen for when enters and leaves this view
+            }
+
+            animateViewHitPointIndicator(toPoint: pointInARMenuView)
         } else {
             hitPointIndicator.alpha = 0
         }
@@ -36,13 +45,12 @@ class ARMenuViewController: UIViewController {
     
     private func animateViewHitPointIndicator(toPoint: CGPoint) {
         UIView.animate(withDuration: 0.1, animations: { [weak self] in
-            guard let sSelf = self else {
-                return
-            }
+            // Yay Swift 4.2!!!
+            guard let self = self else { return }
             
-            sSelf.hitPointIndicator.alpha = 1
-            sSelf.hitPointIndicator.layer.position = toPoint
-            print("moving dot to \(toPoint)")
+            self.hitPointIndicator.alpha = 1
+            self.hitPointIndicator.layer.position = toPoint
+//            print("moving dot to \(toPoint)")
         })
     }
     
@@ -51,11 +59,4 @@ class ARMenuViewController: UIViewController {
         bottomButton.alpha = 1
     }
     
-    // need a way better way to do this
-    private func reverseHitTestButton(button: UIButton, point: CGPoint) {
-        button.alpha = button.point(inside: point, with: nil) ? 0.5 : 1.0
-        print("testing button for point: \(point)")
-        
-        // TODO: update child's child label. Perhaps make a SCNOverlay protocol that ViewController.swift conforms to in an extension. something like AROverlayDelegate.updateChildChildLabel() with the coordinates or something. i dunno :P
-    }
 }

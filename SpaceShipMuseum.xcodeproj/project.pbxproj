@@ -13,6 +13,9 @@
 		527951D520CC07A000B9119D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D320CC07A000B9119D /* Main.storyboard */; };
 		527951DA20CC07A100B9119D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D820CC07A100B9119D /* LaunchScreen.storyboard */; };
 		B86239E7214AB95900BC6C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86239E6214AB5C500BC6C46 /* Assets.xcassets */; };
+		B86239EC214AD32A00BC6C46 /* FocusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86239EB214AD32A00BC6C46 /* FocusObserver.swift */; };
+		B86239EE214AD51200BC6C46 /* FocusObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86239ED214AD51200BC6C46 /* FocusObservable.swift */; };
+		B86239F2214ADCB500BC6C46 /* ARFocusableUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86239F1214ADCB500BC6C46 /* ARFocusableUIButton.swift */; };
 		B8AB9A802141951800E6193B /* ARMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AB9A7F2141951800E6193B /* ARMenuView.xib */; };
 		B8AB9A86214197D400E6193B /* ARMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB9A85214197D400E6193B /* ARMenuView.swift */; };
 		B8F5CCCB214181B70034D0EF /* ARMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */; };
@@ -27,6 +30,9 @@
 		527951D920CC07A100B9119D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86239E6214AB5C500BC6C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B86239EA214AB9A000BC6C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B86239EB214AD32A00BC6C46 /* FocusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusObserver.swift; sourceTree = "<group>"; };
+		B86239ED214AD51200BC6C46 /* FocusObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusObservable.swift; sourceTree = "<group>"; };
+		B86239F1214ADCB500BC6C46 /* ARFocusableUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFocusableUIButton.swift; sourceTree = "<group>"; };
 		B8AB9A7F2141951800E6193B /* ARMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARMenuView.xib; sourceTree = "<group>"; };
 		B8AB9A85214197D400E6193B /* ARMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMenuView.swift; sourceTree = "<group>"; };
 		B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMenuViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 				527951D820CC07A100B9119D /* LaunchScreen.storyboard */,
 				B86239E4214AB56E00BC6C46 /* ARMenu */,
 				B86239E8214AB96400BC6C46 /* SupportingFiles */,
+				B86239EB214AD32A00BC6C46 /* FocusObserver.swift */,
+				B86239ED214AD51200BC6C46 /* FocusObservable.swift */,
 			);
 			path = SpaceShipMuseum;
 			sourceTree = "<group>";
@@ -78,6 +86,7 @@
 				B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */,
 				B8AB9A85214197D400E6193B /* ARMenuView.swift */,
 				B8AB9A7F2141951800E6193B /* ARMenuView.xib */,
+				B86239F1214ADCB500BC6C46 /* ARFocusableUIButton.swift */,
 			);
 			path = ARMenu;
 			sourceTree = "<group>";
@@ -166,9 +175,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AB9A86214197D400E6193B /* ARMenuView.swift in Sources */,
+				B86239F2214ADCB500BC6C46 /* ARFocusableUIButton.swift in Sources */,
 				527951D220CC07A000B9119D /* ViewController.swift in Sources */,
 				527951CE20CC07A000B9119D /* AppDelegate.swift in Sources */,
 				B8F5CCCB214181B70034D0EF /* ARMenuViewController.swift in Sources */,
+				B86239EC214AD32A00BC6C46 /* FocusObserver.swift in Sources */,
+				B86239EE214AD51200BC6C46 /* FocusObservable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

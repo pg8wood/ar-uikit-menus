@@ -18,6 +18,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var firstMaterialCoordinatesLabel: UILabel!
     @IBOutlet weak var firstMaterialChildViewCoordinatesLabel: UILabel!
     
+    var focusObservers = [ObjectIdentifier: FocusObserver]()
     var viewControllerDict = Dictionary<UIView, UIViewController>()
     
 //    let arMenuView: NibView = NibView()
@@ -79,6 +80,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                 let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
                 self?.viewControllerDict[arMenuViewController.view] = arMenuViewController
                 arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                self?.addObserver(arMenuViewController.arMenuView)
                 plane.firstMaterial?.diffuse.contents = arMenuViewController.arMenuView
             }
             
@@ -96,16 +98,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         // Conduct a hit test based on a feature point that ARKit detected to find out what 3D point this 2D coordinate relates to
         let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
         
-        guard !hitTestResult.isEmpty, let hitNode = hitTestResult.first?.node else {
-            for vc in viewControllerDict.values {
-                if let arVC = vc as? ARMenuViewController {
-                    arVC.resetButtonAppearances()
-                }
-            }
-            
+        guard let hitNode = hitTestResult.first?.node else {
             scnNodeCoordinatesLabel.text = "Not looking at any SCNNodes."
             firstMaterialCoordinatesLabel.text = ""
             firstMaterialChildViewCoordinatesLabel.text = ""
+            
+            for observer in observers.values {
+                observer.lostFocus()
+            }
+            
             return
         }
         
@@ -135,5 +136,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             //
             hitViewController.reverseHitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
         }
+    }
+}
+
+extension ViewController: FocusObservable {
+    var observers: [ObjectIdentifier: FocusObserver] {
+        get {
+           return focusObservers
+        } set {
+           focusObservers = newValue
+        }
+    }
+
+    func addObserver(_ observer: FocusObserver) {
+        observers[ObjectIdentifier(observer)] = observer
+    }
+    
+    func removeObserver(_ observer: FocusObserver) {
+        observers.removeValue(forKey: ObjectIdentifier(observer))
     }
 }
