@@ -10,10 +10,10 @@ import UIKit
 
 class ARFocusableUIButton: UIButton, FocusObserver {
     func gainedFocus() {
-        alpha = 1.0
+        alpha = 0.5
     }
     
     func lostFocus() {
-        alpha = 0.5
+        alpha = 1.0
     }
 }

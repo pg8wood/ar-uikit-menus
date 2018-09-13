@@ -83,10 +83,10 @@
 		B86239E4214AB56E00BC6C46 /* ARMenu */ = {
 			isa = PBXGroup;
 			children = (
+				B86239F1214ADCB500BC6C46 /* ARFocusableUIButton.swift */,
 				B8F5CCCA214181B70034D0EF /* ARMenuViewController.swift */,
 				B8AB9A85214197D400E6193B /* ARMenuView.swift */,
 				B8AB9A7F2141951800E6193B /* ARMenuView.xib */,
-				B86239F1214ADCB500BC6C46 /* ARFocusableUIButton.swift */,
 			);
 			path = ARMenu;
 			sourceTree = "<group>";

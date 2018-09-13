@@ -11,13 +11,17 @@ import UIKit
 class ARMenuViewController: UIViewController {
     @IBOutlet var arMenuView: ARMenuView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var topButton: UIButton!
-    @IBOutlet weak var bottomButton: UIButton!
+    @IBOutlet weak var topButton: ARFocusableUIButton!
+    @IBOutlet weak var bottomButton: ARFocusableUIButton!
     @IBOutlet weak var hitPointIndicator: UIImageView!
     
+    var focusObservers = [ObjectIdentifier: FocusObserver]()
     override func viewDidLoad() {
         hitPointIndicator.layer.borderColor = UIColor.black.cgColor
         hitPointIndicator.layer.borderWidth = 1
+        
+        addObserver(topButton)
+        addObserver(bottomButton)
     }
 
     
@@ -27,20 +31,19 @@ class ARMenuViewController: UIViewController {
             let pointInARMenuView = CGPoint(x: point.x * view.frame.size.width, y: point.y * view.frame.size.height) // scale factor is off!
             
             if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
-                print("ar menu hit test: \(arMenuHitTestResult)")
+                animateViewHitPointIndicator(toPoint: pointInARMenuView)
                 
                 if let observer = arMenuHitTestResult as? FocusObserver {
-                    print("\(type(of: arMenuHitTestResult)) gained focus")
                     observer.gainedFocus()
+                    return
                 }
-
-                // TODO unset: probably best to listen for when enters and leaves this view
             }
 
-            animateViewHitPointIndicator(toPoint: pointInARMenuView)
         } else {
             hitPointIndicator.alpha = 0
         }
+        
+        notifyAllObserversLostFocus()
     }
     
     private func animateViewHitPointIndicator(toPoint: CGPoint) {
@@ -59,4 +62,28 @@ class ARMenuViewController: UIViewController {
         bottomButton.alpha = 1
     }
     
+}
+
+extension ARMenuViewController: FocusObservable {
+    var observers: [ObjectIdentifier: FocusObserver] {
+        get {
+            return focusObservers
+        } set {
+            focusObservers = newValue
+        }
+    }
+    
+    func addObserver(_ observer: FocusObserver) {
+        observers[ObjectIdentifier(observer)] = observer
+    }
+    
+    func removeObserver(_ observer: FocusObserver) {
+        observers.removeValue(forKey: ObjectIdentifier(observer))
+    }
+    
+    func notifyAllObserversLostFocus() {
+        for observer in observers.values {
+            observer.lostFocus()
+        }
+    }
 }

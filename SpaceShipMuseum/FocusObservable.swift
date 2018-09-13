@@ -13,4 +13,5 @@ protocol FocusObservable {
     
     func addObserver(_ observer: FocusObserver)
     func removeObserver(_ observer: FocusObserver)
+    func notifyAllObserversLostFocus()
 }

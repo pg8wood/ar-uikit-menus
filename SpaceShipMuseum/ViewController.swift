@@ -18,7 +18,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBOutlet weak var firstMaterialCoordinatesLabel: UILabel!
     @IBOutlet weak var firstMaterialChildViewCoordinatesLabel: UILabel!
     
-    var focusObservers = [ObjectIdentifier: FocusObserver]()
     var viewControllerDict = Dictionary<UIView, UIViewController>()
     
 //    let arMenuView: NibView = NibView()
@@ -80,7 +79,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                 let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
                 self?.viewControllerDict[arMenuViewController.view] = arMenuViewController
                 arMenuViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                self?.addObserver(arMenuViewController.arMenuView)
                 plane.firstMaterial?.diffuse.contents = arMenuViewController.arMenuView
             }
             
@@ -103,8 +101,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             firstMaterialCoordinatesLabel.text = ""
             firstMaterialChildViewCoordinatesLabel.text = ""
             
-            for observer in observers.values {
-                observer.lostFocus()
+            for focusObservable in viewControllerDict.values.compactMap({ $0 as? FocusObservable }) {
+                focusObservable.notifyAllObserversLostFocus()
             }
             
             return
@@ -136,23 +134,5 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             //
             hitViewController.reverseHitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
         }
-    }
-}
-
-extension ViewController: FocusObservable {
-    var observers: [ObjectIdentifier: FocusObserver] {
-        get {
-           return focusObservers
-        } set {
-           focusObservers = newValue
-        }
-    }
-
-    func addObserver(_ observer: FocusObserver) {
-        observers[ObjectIdentifier(observer)] = observer
-    }
-    
-    func removeObserver(_ observer: FocusObserver) {
-        observers.removeValue(forKey: ObjectIdentifier(observer))
     }
 }
