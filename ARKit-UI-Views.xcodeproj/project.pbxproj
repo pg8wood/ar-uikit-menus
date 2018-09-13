@@ -67,9 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				527951CD20CC07A000B9119D /* AppDelegate.swift */,
-				527951D120CC07A000B9119D /* ViewController.swift */,
 				527951D320CC07A000B9119D /* Main.storyboard */,
-				527951D820CC07A100B9119D /* LaunchScreen.storyboard */,
+				527951D120CC07A000B9119D /* ViewController.swift */,
 				B86239EB214AD32A00BC6C46 /* FocusObserver.swift */,
 				B86239ED214AD51200BC6C46 /* FocusObservable.swift */,
 				B86239E4214AB56E00BC6C46 /* ARMenu */,
@@ -91,6 +90,7 @@
 		B86239E8214AB96400BC6C46 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				527951D820CC07A100B9119D /* LaunchScreen.storyboard */,
 				B86239EA214AB9A000BC6C46 /* Info.plist */,
 				B86239E6214AB5C500BC6C46 /* Assets.xcassets */,
 				527951CF20CC07A000B9119D /* art.scnassets */,

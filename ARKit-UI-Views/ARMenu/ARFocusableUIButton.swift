@@ -1,9 +1,9 @@
 //
 //  ARFocusableUIButton.swift
-//  SpaceShipMuseum
+//  ARKit-UI-Views
 //
 //  Created by Patrick Gatewood on 9/13/18.
-//  Copyright © 2018 Brian Advent. All rights reserved.
+//  Copyright © 2018 Patrick Gatewood. All rights reserved.
 //
 
 import UIKit
