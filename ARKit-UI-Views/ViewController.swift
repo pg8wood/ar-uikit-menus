@@ -60,10 +60,7 @@ extension ViewController: ARSCNViewDelegate {
         if let imageAnchor = anchor as? ARImageAnchor {
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             
-            
-            let arMenuViewController = ARMenuViewController.init(nibName: "ARMenuView", bundle: nil)
-            
-            let arMenuSCNNode = UISCNNode(viewController: arMenuViewController, geometry: plane)
+            let arMenuSCNNode = UISCNNode<ARMenuViewController>(nibName: "ARMenuView", bundle: nil, geometry: plane)
             
             node.addChildNode(arMenuSCNNode)
         }
