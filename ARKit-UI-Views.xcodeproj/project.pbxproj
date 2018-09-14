@@ -12,6 +12,7 @@
 		527951D220CC07A000B9119D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527951D120CC07A000B9119D /* ViewController.swift */; };
 		527951D520CC07A000B9119D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D320CC07A000B9119D /* Main.storyboard */; };
 		527951DA20CC07A100B9119D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527951D820CC07A100B9119D /* LaunchScreen.storyboard */; };
+		B83A0417214C0CFA00EBD7BE /* UISCNPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83A0416214C0CFA00EBD7BE /* UISCNPlane.swift */; };
 		B86239E7214AB95900BC6C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86239E6214AB5C500BC6C46 /* Assets.xcassets */; };
 		B86239EC214AD32A00BC6C46 /* FocusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86239EB214AD32A00BC6C46 /* FocusObserver.swift */; };
 		B86239EE214AD51200BC6C46 /* FocusObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86239ED214AD51200BC6C46 /* FocusObservable.swift */; };
@@ -27,6 +28,7 @@
 		527951D120CC07A000B9119D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		527951D420CC07A000B9119D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		527951D920CC07A100B9119D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B83A0416214C0CFA00EBD7BE /* UISCNPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISCNPlane.swift; sourceTree = "<group>"; };
 		B86239E6214AB5C500BC6C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B86239EA214AB9A000BC6C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86239EB214AD32A00BC6C46 /* FocusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusObserver.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				527951CD20CC07A000B9119D /* AppDelegate.swift */,
 				527951D320CC07A000B9119D /* Main.storyboard */,
 				527951D120CC07A000B9119D /* ViewController.swift */,
+				B83A0416214C0CFA00EBD7BE /* UISCNPlane.swift */,
 				B86239EB214AD32A00BC6C46 /* FocusObserver.swift */,
 				B86239ED214AD51200BC6C46 /* FocusObservable.swift */,
 				B86239E4214AB56E00BC6C46 /* ARMenu */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83A0417214C0CFA00EBD7BE /* UISCNPlane.swift in Sources */,
 				B86239F2214ADCB500BC6C46 /* ARFocusableUIButton.swift in Sources */,
 				527951D220CC07A000B9119D /* ViewController.swift in Sources */,
 				527951CE20CC07A000B9119D /* AppDelegate.swift in Sources */,
