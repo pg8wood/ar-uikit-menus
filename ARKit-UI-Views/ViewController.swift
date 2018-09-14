@@ -27,6 +27,14 @@ class ViewController: UIViewController {
         
         sceneView.delegate = self
         sceneView.session.delegate = self
+    
+        setupLabels()
+    }
+    
+    private func setupLabels() {
+        let labelFont = UIFont.monospacedDigitSystemFont(ofSize: 17.0, weight: .medium)
+        scnNodeCoordinatesLabel.font = labelFont
+        firstMaterialCoordinatesLabel.font = labelFont
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +95,6 @@ extension ViewController: ARSessionDelegate {
                 print("no local coordinates")
                 return
         }
-        
 
         let viewHitCoordinates = hitNode.viewCoordinates(fromNodeTextureCoordinates: nodeTextureHitCoordinates)
         hitNode.viewController.hitTestViews(point: viewHitCoordinates)
