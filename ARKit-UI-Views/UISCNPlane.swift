@@ -12,6 +12,7 @@ import SceneKit
 class UISCNNode<T: UIViewController>: SCNNode {
     
     var viewController: T!
+    var mappingChannel = 0
     
     init (nibName: String?, bundle: Bundle?, geometry: SCNGeometry) {
         super.init()
@@ -38,5 +39,12 @@ class UISCNNode<T: UIViewController>: SCNNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func viewCoordinates(fromNodeTextureCoordinates: CGPoint) -> CGPoint {
+        let x = fromNodeTextureCoordinates.x * viewController.view.frame.size.width
+        let y = fromNodeTextureCoordinates.y * viewController.view.frame.size.height
+        
+        return CGPoint(x: x, y: y)
     }
 }

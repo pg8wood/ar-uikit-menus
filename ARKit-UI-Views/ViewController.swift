@@ -77,32 +77,24 @@ extension ViewController: ARSessionDelegate {
         // Conduct a hit test based on a feature point that ARKit detected to find out what 3D point this 2D coordinate relates to
         let hitTestResult = sceneView.hitTest(centerImagePosition, options: [.boundingBoxOnly: true])
         
-        // TODO: Try making custom UISCNNode (or whatever) to reduce the number of guards / conditional lets below
-        guard let hitNode = hitTestResult.first?.node,
-            let hitPlane = hitNode.geometry as? SCNPlane,
-            hitPlane.firstMaterial != nil,
-            let hitView = hitPlane.firstMaterial?.diffuse.contents as? UIView
-            else {
-                handleNoSCNNodesInFocus()
-                return
+        guard let hitNode = hitTestResult.first?.node as? UISCNNode<ARMenuViewController> else {
+            handleNoSCNNodesInFocus()
+            return
         }
         
         guard let nodeHitCoordinates = hitTestResult.first?.localCoordinates,
-            let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: hitPlane.firstMaterial!.diffuse.mappingChannel) else {
+            let nodeTextureHitCoordinates = hitTestResult.first?.textureCoordinates(withMappingChannel: hitNode.mappingChannel) else {
                 print("no local coordinates")
                 return
         }
         
-        guard let hitViewController = viewControllerDict[hitView] as? ARMenuViewController else {
-            print("didn't find a ViewController to use")
-            return
-        }
+
+        let viewHitCoordinates = hitNode.viewCoordinates(fromNodeTextureCoordinates: nodeTextureHitCoordinates)
+        hitNode.viewController.hitTestViews(point: viewHitCoordinates)
         
         // update labels
         scnNodeCoordinatesLabel.text = String(format: "\(type(of: hitNode)) coordinates: (%.2f, %.2f)", nodeHitCoordinates.x, nodeHitCoordinates.y)
-        firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitView)) coordinates: (%.2f, %.2f)", nodeTextureHitCoordinates.x, nodeTextureHitCoordinates.y)
-        
-        hitViewController.hitTestViews(point: CGPoint(x: nodeTextureHitCoordinates.x, y: nodeTextureHitCoordinates.y))
+        firstMaterialCoordinatesLabel.text = String(format: "\(type(of: hitNode.viewController!)) coordinates: (%.0f, %.0f)", viewHitCoordinates.x, viewHitCoordinates.y)
     }
     
     private func handleNoSCNNodesInFocus() {

@@ -33,11 +33,8 @@ class ARMenuViewController: UIViewController {
 
     
     func hitTestViews(point: CGPoint) {
-        // TODO this translation of coordinates is always necessary. maybe should be abstracted away
-        let pointInARMenuView = CGPoint(x: point.x * arMenuView.frame.size.width, y: point.y * arMenuView.frame.size.height)
-        
-        if let arMenuHitTestResult = arMenuView.hitTest(pointInARMenuView, with: nil) {
-            animateViewHitPointIndicator(toPoint: pointInARMenuView)
+        if let arMenuHitTestResult = arMenuView.hitTest(point, with: nil) {
+            animateViewHitPointIndicator(toPoint: point)
             
             if let observer = arMenuHitTestResult as? FocusObserver {
                 // Only allow one observer to have focus at any given time
