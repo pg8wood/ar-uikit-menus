@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARKit-UI-Views/ViewController.swift"
-            timestampString = "558646339.16164"
+            timestampString = "558889524.754616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARKit-UI-Views/ViewController.swift"
-            timestampString = "558646339.162178"
+            timestampString = "558889524.754738"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -74,13 +74,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARKit-UI-Views/UISCNPlane.swift"
-            timestampString = "558646339.162516"
+            timestampString = "558889524.754832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "init(nibName:bundle:geometry:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ARKit-UI-Views/ViewController.swift"
+            timestampString = "558889524.7552299"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "handleNoSCNNodesInFocus()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ARKit_UI_Views.ViewController.(handleNoSCNNodesInFocus in _93686EC364A4B5AC3F778E69C4220883)() -&gt; ()"
+                  moduleName = "ARKit-UI-Views"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/patrickgatewood/Documents/ARKit-UI-Views/ARKit-UI-Views/ViewController.swift"
+                  timestampString = "558647001.745882"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "604">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ARKit_UI_Views.UISCNNode&lt;__C.UIViewController&gt;) -&gt; Swift.Optional&lt;ARKit_UI_Views.FocusObservable&gt; in ARKit_UI_Views.ViewController.(handleNoSCNNodesInFocus in _93686EC364A4B5AC3F778E69C4220883)() -&gt; ()"
+                  moduleName = "ARKit-UI-Views"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/patrickgatewood/Documents/ARKit-UI-Views/ARKit-UI-Views/ViewController.swift"
+                  timestampString = "558647001.748504"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

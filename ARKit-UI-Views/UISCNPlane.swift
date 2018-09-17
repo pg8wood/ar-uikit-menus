@@ -26,6 +26,7 @@ class UISCNNode<T: UIViewController>: SCNNode {
     // Note: the VC must be fully initialized on the main thread before using this initializer.
     init(viewController: UIViewController, geometry: SCNGeometry) {
         super.init()
+        
         self.viewController = viewController as? T
         setupNode(with: geometry)
     }

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scnNodeCoordinatesLabel: UILabel!
     @IBOutlet weak var firstMaterialCoordinatesLabel: UILabel!
     
-    var viewControllerDict = Dictionary<UIView, UIViewController>()
+    var observableNodes = [UISCNNode<ARMenuViewController>]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +67,10 @@ extension ViewController: ARSCNViewDelegate {
         
         if let imageAnchor = anchor as? ARImageAnchor {
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
-            
             let arMenuSCNNode = UISCNNode<ARMenuViewController>(nibName: "ARMenuView", bundle: nil, geometry: plane)
             
             node.addChildNode(arMenuSCNNode)
+            observableNodes.append(arMenuSCNNode)
         }
         return node
     }
@@ -108,7 +108,7 @@ extension ViewController: ARSessionDelegate {
         scnNodeCoordinatesLabel.text = "Not looking at any SCNNodes."
         firstMaterialCoordinatesLabel.text = ""
         
-        for focusObservable in viewControllerDict.values.compactMap({ $0 as? FocusObservable }) {
+        for focusObservable in observableNodes.compactMap({ $0.viewController }) {
             focusObservable.notifyAllObserversLostFocus()
         }
     }

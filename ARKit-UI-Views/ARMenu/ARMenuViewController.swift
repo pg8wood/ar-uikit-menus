@@ -61,7 +61,6 @@ class ARMenuViewController: UIViewController {
         topButton.alpha = 1
         bottomButton.alpha = 1
     }
-    
 }
 
 extension ARMenuViewController: FocusObservable {
